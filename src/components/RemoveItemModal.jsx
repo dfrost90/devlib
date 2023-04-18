@@ -3,23 +3,21 @@ import Modal from './Modal';
 import styled from 'styled-components';
 
 const RemoveItemModal = () => {
-  const { closeRemoveModal } = useGlobalContext();
+  const { closeModal } = useGlobalContext();
 
   const handleConfirm = () => {
     console.log('remove item log');
+
+    closeModal();
   };
 
   return (
-    <Modal title="Remove item?" closeModal={closeRemoveModal}>
+    <Modal title="Remove item?">
       <BtnContainer>
         <button type="button" className="btn" onClick={handleConfirm}>
           Confirm
         </button>
-        <button
-          type="button"
-          className="btn cancel-btn"
-          onClick={closeRemoveModal}
-        >
+        <button type="button" className="btn cancel-btn" onClick={closeModal}>
           Dismiss
         </button>
       </BtnContainer>

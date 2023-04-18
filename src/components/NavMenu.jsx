@@ -5,12 +5,7 @@ import { useGlobalContext } from '../context/global_context';
 import { useAuthContext } from '../context/auth_context';
 
 const NavMenu = () => {
-  const {
-    theme,
-    toggleTheme,
-    openAuthModal,
-    openAddModal,
-  } = useGlobalContext();
+  const { theme, toggleTheme, openModal } = useGlobalContext();
 
   const { authUser, userSignOut } = useAuthContext();
 
@@ -26,7 +21,7 @@ const NavMenu = () => {
             <button
               type="button"
               className="btn menu-btn"
-              onClick={openAddModal}
+              onClick={() => openModal('add-item-modal')}
             >
               <FiPlusSquare />
             </button>
@@ -43,7 +38,7 @@ const NavMenu = () => {
           <button
             type="button"
             className="btn menu-btn"
-            onClick={openAuthModal}
+            onClick={() => openModal('auth-modal')}
           >
             <FiUser />
           </button>

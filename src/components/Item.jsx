@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { FiExternalLink, FiTrash2 } from 'react-icons/fi';
-import { useState } from 'react';
 import { useGlobalContext } from '../context/global_context';
 
 const Item = ({ id, title, description, url, categories }) => {
-  const { openRemoveModal } = useGlobalContext();
+  const { openModal } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -13,7 +12,7 @@ const Item = ({ id, title, description, url, categories }) => {
         <button
           className="btn remove-btn"
           type="button"
-          onClick={openRemoveModal}
+          onClick={() => openModal('remove-item-modal')}
         >
           <FiTrash2 />
         </button>

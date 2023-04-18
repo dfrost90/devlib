@@ -1,12 +1,4 @@
-import {
-  CLOSE_ADD_MODAL,
-  OPEN_ADD_MODAL,
-  CLOSE_REMOVE_MODAL,
-  OPEN_REMOVE_MODAL,
-  CLOSE_AUTH_MODAL,
-  OPEN_AUTH_MODAL,
-  TOGGLE_THEME,
-} from './actions';
+import { OPEN_MODAL, CLOSE_MODAL, TOGGLE_THEME } from './actions';
 
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from '../reducers/reducer';
@@ -23,9 +15,8 @@ const getStorageTheme = () => {
 
 const initialState = {
   theme: getStorageTheme(),
-  addModalIsOpen: false,
-  authModalIsOpen: false,
-  removeModalIsOpen: false,
+  modalIsOpen: false,
+  modalType: null,
 };
 
 export const GlobalProvider = ({ children }) => {
@@ -35,28 +26,12 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: TOGGLE_THEME });
   };
 
-  const openAuthModal = () => {
-    dispatch({ type: OPEN_AUTH_MODAL });
+  const openModal = (type) => {
+    dispatch({ type: OPEN_MODAL, payload: type });
   };
 
-  const closeAuthModal = () => {
-    dispatch({ type: CLOSE_AUTH_MODAL });
-  };
-
-  const openAddModal = () => {
-    dispatch({ type: OPEN_ADD_MODAL });
-  };
-
-  const closeAddModal = () => {
-    dispatch({ type: CLOSE_ADD_MODAL });
-  };
-
-  const openRemoveModal = () => {
-    dispatch({ type: OPEN_REMOVE_MODAL });
-  };
-
-  const closeRemoveModal = () => {
-    dispatch({ type: CLOSE_REMOVE_MODAL });
+  const closeModal = () => {
+    dispatch({ type: CLOSE_MODAL });
   };
 
   useEffect(() => {
@@ -69,12 +44,8 @@ export const GlobalProvider = ({ children }) => {
       value={{
         ...state,
         toggleTheme,
-        openAuthModal,
-        closeAuthModal,
-        openAddModal,
-        closeAddModal,
-        openRemoveModal,
-        closeRemoveModal,
+        openModal,
+        closeModal,
       }}
     >
       {children}

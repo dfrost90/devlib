@@ -1,21 +1,20 @@
 import { TfiClose } from 'react-icons/tfi';
 import styled from 'styled-components';
+import { useGlobalContext } from '../context/global_context';
 
-const Modal = ({ children, title, closeModal }) => {
-  const handleClose = () => {
-    closeModal();
-  };
+const Modal = ({ children, title }) => {
+  const { closeModal } = useGlobalContext();
 
   return (
     <Wrapper
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          handleClose();
+          closeModal();
         }
       }}
     >
       <div className="modal-container">
-        <button type="button" className="btn close-btn" onClick={handleClose}>
+        <button type="button" className="btn close-btn" onClick={closeModal}>
           <TfiClose />
         </button>
         {title && (

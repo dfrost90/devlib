@@ -10,21 +10,16 @@ import { ToastContainer, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const {
-    addModalIsOpen,
-    authModalIsOpen,
-    removeModalIsOpen,
-    theme,
-  } = useGlobalContext();
+  const { modalIsOpen, modalType, theme } = useGlobalContext();
   return (
     <main>
       <Navbar />
       <List />
 
       {/* Modals */}
-      {authModalIsOpen && <AuthModal />}
-      {addModalIsOpen && <AddItemModal />}
-      {removeModalIsOpen && <RemoveItemModal />}
+      {modalIsOpen && modalType === 'auth-modal' && <AuthModal />}
+      {modalIsOpen && modalType === 'add-item-modal' && <AddItemModal />}
+      {modalIsOpen && modalType === 'remove-item-modal' && <RemoveItemModal />}
 
       {/* Toast messages */}
       <ToastContainer

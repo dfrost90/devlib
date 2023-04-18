@@ -5,7 +5,7 @@ import { useAuthContext } from '../context/auth_context';
 import FormRow from './FormRow';
 
 const AuthModalContent = () => {
-  const { closeAuthModal } = useGlobalContext();
+  const { closeModal } = useGlobalContext();
   const { userSignUp, userSignIn } = useAuthContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,14 +20,11 @@ const AuthModalContent = () => {
       userSignIn(email, password);
     }
 
-    closeAuthModal();
+    closeModal();
   };
 
   return (
-    <Modal
-      title={isFormSignUp ? 'Register' : 'Login'}
-      closeModal={closeAuthModal}
-    >
+    <Modal title={isFormSignUp ? 'Register' : 'Login'}>
       <form onSubmit={handleSubmit}>
         <FormRow
           type="email"

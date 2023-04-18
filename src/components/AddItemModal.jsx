@@ -3,14 +3,16 @@ import FormRow from './FormRow';
 import Modal from './Modal';
 
 const AddItemModalContent = () => {
-  const { closeAddModal } = useGlobalContext();
+  const { closeModal } = useGlobalContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    closeModal();
   };
 
   return (
-    <Modal title="Add item" closeModal={closeAddModal}>
+    <Modal title="Add item">
       <form onSubmit={handleSubmit}>
         <FormRow
           type="text"

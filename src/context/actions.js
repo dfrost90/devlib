@@ -1,7 +1,3 @@
 export const TOGGLE_THEME = 'TOGGLE_THEME';
-export const OPEN_AUTH_MODAL = 'OPEN_AUTH_MODAL';
-export const CLOSE_AUTH_MODAL = 'CLOSE_AUTH_MODAL';
-export const OPEN_ADD_MODAL = 'OPEN_ADD_MODAL';
-export const CLOSE_ADD_MODAL = 'CLOSE_ADD_MODAL';
-export const OPEN_REMOVE_MODAL = 'OPEN_REMOVE_MODAL';
-export const CLOSE_REMOVE_MODAL = 'CLOSE_REMOVE_MODAL';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';

@@ -1,12 +1,26 @@
+import { ref, set } from 'firebase/database';
+import { useAuthContext } from '../context/auth_context';
 import { useGlobalContext } from '../context/global_context';
 import FormRow from './FormRow';
 import Modal from './Modal';
+import { db } from '../firebase';
+import { nanoid } from 'nanoid';
+import { useState } from 'react';
 
 const AddItemModalContent = () => {
+  const { authUser } = useAuthContext();
   const { closeModal } = useGlobalContext();
+  const [item, setItem] = useState({
+    libName: '',
+    libUrl: '',
+    libCategories: '',
+    libInfo: '',
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    set(ref(db, `storage/${authUser?.uid}/${nanoid()}`), item);
 
     closeModal();
   };
@@ -19,6 +33,8 @@ const AddItemModalContent = () => {
           name="itemName"
           id="itemName"
           labelText="Name"
+          value={item.libName}
+          handleChange={(e) => setItem({ ...item, libName: e.target.value })}
           placeholder="Enter library name"
         />
         <FormRow
@@ -26,6 +42,8 @@ const AddItemModalContent = () => {
           name="itemUrl"
           id="itemUrl"
           labelText="URL"
+          value={item.libUrl}
+          handleChange={(e) => setItem({ ...item, libUrl: e.target.value })}
           placeholder="Enter library url"
         />
         <FormRow
@@ -33,6 +51,10 @@ const AddItemModalContent = () => {
           name="itemCategories"
           id="itemCategories"
           labelText="Categories"
+          value={item.libCategories}
+          handleChange={(e) =>
+            setItem({ ...item, libCategories: e.target.value })
+          }
           placeholder="Enter categories, separated by coma"
         />
         <label className="form-label" htmlFor="itemDescription">
@@ -42,6 +64,8 @@ const AddItemModalContent = () => {
           className="form-textarea"
           name="itemDescription"
           id="itemDescription"
+          value={item.libInfo}
+          onChange={(e) => setItem({ ...item, libInfo: e.target.value })}
           placeholder="Enter short description"
         ></textarea>
         <button type="submit" className="btn submit-btn">

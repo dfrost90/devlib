@@ -3,10 +3,11 @@ import { FiUser, FiPlusSquare, FiSun, FiMoon } from 'react-icons/fi';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { useGlobalContext } from '../context/global_context';
 import { useAuthContext } from '../context/auth_context';
+import { useLibraryContext } from '../context/library_context';
 
 const NavMenu = () => {
   const { theme, toggleTheme, openModal } = useGlobalContext();
-
+  const { setStorage } = useLibraryContext();
   const { authUser, userSignOut } = useAuthContext();
 
   return (
@@ -29,7 +30,10 @@ const NavMenu = () => {
             <button
               type="button"
               className="btn menu-btn"
-              onClick={userSignOut}
+              onClick={() => {
+                userSignOut();
+                setStorage([]);
+              }}
             >
               <AiOutlineLogout />
             </button>

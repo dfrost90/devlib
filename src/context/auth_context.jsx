@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
@@ -7,6 +7,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { push, ref, set } from 'firebase/database';
 
 const AuthContext = createContext();
 
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         email,
         password
       );
+
       toast.success(`Welcome ${user.email}`);
     } catch (error) {
       toast.error(error.code);

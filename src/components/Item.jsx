@@ -2,7 +2,13 @@ import styled from 'styled-components';
 import { FiExternalLink, FiTrash2 } from 'react-icons/fi';
 import { useGlobalContext } from '../context/global_context';
 
-const Item = ({ id, title, description, url, categories }) => {
+const Item = ({
+  id,
+  libName: title,
+  libInfo: description,
+  libUrl: url,
+  libCategories: categories,
+}) => {
   const { openModal } = useGlobalContext();
 
   return (
@@ -22,7 +28,7 @@ const Item = ({ id, title, description, url, categories }) => {
       </header>
       <p>{description}</p>
       <div>
-        {categories.map((category, index) => {
+        {categories.split(',').map((category, index) => {
           return <span key={index}>{category}</span>;
         })}
       </div>

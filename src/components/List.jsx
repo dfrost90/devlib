@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import data from '../data.json';
 import Item from './Item';
-import Search from './Search';
+import { useLibraryContext } from '../context/library_context';
 
 const List = () => {
+  const { storage: list } = useLibraryContext();
+
   return (
     <Wrapper>
       {/* items list */}
-      {data.map((item) => {
-        return <Item key={item.id} {...item} />;
+      {list.map((item, index) => {
+        return <Item key={index} {...item} />;
       })}
     </Wrapper>
   );

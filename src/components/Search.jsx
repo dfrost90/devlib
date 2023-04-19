@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
-const Search = () => {
+const Search = ({ showSearch, setShowSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -8,6 +8,8 @@ const Search = () => {
   const handleChange = (e) => {
     console.log('handle change');
   };
+
+  // ${showSearch ? 'block' : 'none'}
 
   return (
     <Wrapper>
@@ -31,6 +33,12 @@ const Search = () => {
 };
 
 const Wrapper = styled.div`
+  display: block;
+
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+
   .form {
     margin: 0 auto;
     max-width: var(--fixed-width);
@@ -39,6 +47,7 @@ const Wrapper = styled.div`
   .form-row {
     display: grid;
     grid-template-columns: 1fr auto;
+    margin-bottom: 0;
     position: relative;
   }
 

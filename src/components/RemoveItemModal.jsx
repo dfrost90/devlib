@@ -1,12 +1,16 @@
+import { ref, remove } from 'firebase/database';
 import { useGlobalContext } from '../context/global_context';
 import Modal from './Modal';
 import styled from 'styled-components';
+import { useAuthContext } from '../context/auth_context';
+import { db } from '../firebase';
 
 const RemoveItemModal = () => {
-  const { closeModal } = useGlobalContext();
+  const { closeModal, modal } = useGlobalContext();
+  const { authUser } = useAuthContext();
 
   const handleConfirm = () => {
-    console.log('remove item log');
+    remove(ref(db, `storage/${authUser?.uid}/${modal?.context}`));
 
     closeModal();
   };

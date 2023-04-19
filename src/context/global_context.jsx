@@ -16,7 +16,7 @@ const getStorageTheme = () => {
 const initialState = {
   theme: getStorageTheme(),
   modalIsOpen: false,
-  modalType: null,
+  modal: null,
 };
 
 export const GlobalProvider = ({ children }) => {
@@ -26,8 +26,8 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: TOGGLE_THEME });
   };
 
-  const openModal = (type) => {
-    dispatch({ type: OPEN_MODAL, payload: type });
+  const openModal = (type, context) => {
+    dispatch({ type: OPEN_MODAL, payload: { type, context } });
   };
 
   const closeModal = () => {

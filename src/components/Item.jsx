@@ -1,27 +1,31 @@
 import styled from 'styled-components';
 import { FiExternalLink, FiTrash2 } from 'react-icons/fi';
 import { useGlobalContext } from '../context/global_context';
+import { useAuthContext } from '../context/auth_context';
 
 const Item = ({
-  id,
+  libID: id,
   libName: title,
   libInfo: description,
   libUrl: url,
   libCategories: categories,
 }) => {
   const { openModal } = useGlobalContext();
+  const { authUser } = useAuthContext();
 
   return (
     <Wrapper>
       <header>
         <h5>{title}</h5>
-        <button
-          className="btn remove-btn"
-          type="button"
-          onClick={() => openModal('remove-item-modal')}
-        >
-          <FiTrash2 />
-        </button>
+        {authUser && (
+          <button
+            className="btn remove-btn"
+            type="button"
+            onClick={() => openModal('remove-item-modal', id)}
+          >
+            <FiTrash2 />
+          </button>
+        )}
         <a href={url} target="_blank">
           <FiExternalLink />{' '}
         </a>

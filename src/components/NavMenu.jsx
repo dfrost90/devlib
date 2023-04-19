@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { FiUser, FiPlusSquare, FiSun, FiMoon } from 'react-icons/fi';
+import { RiSearchLine } from 'react-icons/ri';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { useGlobalContext } from '../context/global_context';
 import { useAuthContext } from '../context/auth_context';
 import { useLibraryContext } from '../context/library_context';
 
-const NavMenu = () => {
+const NavMenu = ({ showSearch, setShowSearch }) => {
   const { theme, toggleTheme, openModal } = useGlobalContext();
   const { setStorage } = useLibraryContext();
   const { authUser, userSignOut } = useAuthContext();
@@ -13,6 +14,15 @@ const NavMenu = () => {
   return (
     <Wrapper>
       <div className="btn-container">
+        <button
+          type="button"
+          className="btn menu-btn search-btn"
+          onClick={() => {
+            setShowSearch(!showSearch);
+          }}
+        >
+          <RiSearchLine />
+        </button>
         <button type="button" className="btn menu-btn" onClick={toggleTheme}>
           {theme === 'light-theme' ? <FiMoon /> : <FiSun />}
         </button>
@@ -66,9 +76,12 @@ const Wrapper = styled.div`
     color: var(--clr-primary-5);
   }
 
-  .profile-image {
-    margin-right: 0.25rem;
-    width: 1.5rem;
+  .search-btn {
+    display: inline-block;
+
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
   }
 `;
 

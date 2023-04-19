@@ -9,8 +9,8 @@ const List = () => {
   return (
     <Wrapper>
       {/* items list */}
-      {list.map((item, index) => {
-        return <Item key={index} {...item} />;
+      {list.map((item) => {
+        return <Item key={item.libID} {...item} />;
       })}
     </Wrapper>
   );
@@ -18,13 +18,22 @@ const List = () => {
 
 const Wrapper = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   margin: 2rem auto;
   max-width: var(--max-width);
   width: 90vw;
 
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   @media screen and (min-width: 992px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 95vw;
   }
 `;

@@ -15,12 +15,17 @@ const AddItemModalContent = () => {
     libUrl: '',
     libCategories: '',
     libInfo: '',
+    libID: nanoid(),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // adding library to user db
     set(ref(db, `storage/${authUser?.uid}/${nanoid()}`), item);
+
+    // adding library to all db
+    set(ref(db, `storage/all/${nanoid()}`), item);
 
     closeModal();
   };
@@ -32,33 +37,36 @@ const AddItemModalContent = () => {
           type="text"
           name="itemName"
           id="itemName"
-          labelText="Name"
+          labelText="Name*"
           value={item.libName}
           handleChange={(e) => setItem({ ...item, libName: e.target.value })}
           placeholder="Enter library name"
+          required={true}
         />
         <FormRow
           type="text"
           name="itemUrl"
           id="itemUrl"
-          labelText="URL"
+          labelText="URL*"
           value={item.libUrl}
           handleChange={(e) => setItem({ ...item, libUrl: e.target.value })}
           placeholder="Enter library url"
+          required={true}
         />
         <FormRow
           type="text"
           name="itemCategories"
           id="itemCategories"
-          labelText="Categories"
+          labelText="Categories*"
           value={item.libCategories}
           handleChange={(e) =>
             setItem({ ...item, libCategories: e.target.value })
           }
+          required={true}
           placeholder="Enter categories, separated by coma"
         />
         <label className="form-label" htmlFor="itemDescription">
-          Description
+          Description*
         </label>
         <textarea
           className="form-textarea"
@@ -66,6 +74,7 @@ const AddItemModalContent = () => {
           id="itemDescription"
           value={item.libInfo}
           onChange={(e) => setItem({ ...item, libInfo: e.target.value })}
+          required
           placeholder="Enter short description"
         ></textarea>
         <button type="submit" className="btn submit-btn">

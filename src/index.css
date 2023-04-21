@@ -51,8 +51,10 @@ Variables
   --clr-item-background: var(--clr-white);
   --clr-item-text: var(--clr-black);
   --clr-search-background: var(--clr-white);
+  --clr-search-hover: var(--clr-primary-8);
   --clr-search-text: var(--clr-black);
   --clr-category-background: var(--clr-primary-10);
+  --clr-category-hover: var(--clr-grey-9);
   --clr-category-text: var(--clr-grey-5);
   --clr-item-border: var(--clr-primary-8);
   --clr-border-color: var(--clr-primary-8);
@@ -68,8 +70,10 @@ Variables
   --clr-item-background: var(--clr-grey-3);
   --clr-item-text: var(--clr-grey-8);
   --clr-search-background: var(--clr-grey-3);
+  --clr-search-hover: var(--clr-grey-4);
   --clr-search-text: var(--clr-grey-8);
   --clr-category-background: var(--clr-grey-4);
+  --clr-category-hover: var(--clr-grey-5);
   --clr-category-text: var(--clr-grey-7);
   --clr-item-border: var(--clr-grey-5);
   --clr-border-color: var(--clr-grey-5);

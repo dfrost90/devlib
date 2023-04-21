@@ -4,11 +4,11 @@ import { RiSearchLine } from 'react-icons/ri';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { useGlobalContext } from '../context/global_context';
 import { useAuthContext } from '../context/auth_context';
-import { useLibraryContext } from '../context/library_context';
+import { useDataContext } from '../context/data_context';
 
-const NavMenu = ({ showSearch, setShowSearch }) => {
-  const { theme, toggleTheme, openModal } = useGlobalContext();
-  const { setStorage } = useLibraryContext();
+const NavMenu = () => {
+  const { theme, toggleTheme, openModal, openSearch } = useGlobalContext();
+  const { setStorage } = useDataContext();
   const { authUser, userSignOut } = useAuthContext();
 
   return (
@@ -17,9 +17,7 @@ const NavMenu = ({ showSearch, setShowSearch }) => {
         <button
           type="button"
           className="btn menu-btn search-btn"
-          onClick={() => {
-            setShowSearch(!showSearch);
-          }}
+          onClick={openSearch}
         >
           <RiSearchLine />
         </button>

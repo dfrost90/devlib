@@ -1,4 +1,10 @@
-import { OPEN_MODAL, CLOSE_MODAL, TOGGLE_THEME } from './actions';
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  TOGGLE_THEME,
+  OPEN_SEARCH,
+  CLOSE_SEARCH,
+} from './actions';
 
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import reducer from '../reducers/reducer';
@@ -17,6 +23,7 @@ const initialState = {
   theme: getStorageTheme(),
   modalIsOpen: false,
   modal: null,
+  searchMode: false,
 };
 
 export const GlobalProvider = ({ children }) => {
@@ -34,6 +41,14 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: CLOSE_MODAL });
   };
 
+  const openSearch = () => {
+    dispatch({ type: OPEN_SEARCH });
+  };
+
+  const closeSearch = () => {
+    dispatch({ type: CLOSE_SEARCH });
+  };
+
   useEffect(() => {
     document.documentElement.className = state.theme;
     localStorage.setItem('theme', state.theme);
@@ -46,6 +61,8 @@ export const GlobalProvider = ({ children }) => {
         toggleTheme,
         openModal,
         closeModal,
+        openSearch,
+        closeSearch,
       }}
     >
       {children}

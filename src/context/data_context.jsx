@@ -2,9 +2,10 @@ import { useContext, createContext, useEffect, useState, useMemo } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { db } from '../firebase';
 import { useAuthContext } from './auth_context';
-const LibraryContext = createContext();
 
-export const LibraryProvider = ({ children }) => {
+const DataContext = createContext();
+
+export const DataProvider = ({ children }) => {
   const { authUser } = useAuthContext();
   const [storage, setStorage] = useState([]);
 
@@ -27,14 +28,14 @@ export const LibraryProvider = ({ children }) => {
   }, [authUser]);
 
   return (
-    <LibraryContext.Provider
+    <DataContext.Provider
       value={useMemo(() => ({ storage, setStorage }), [storage, setStorage])}
     >
       {children}
-    </LibraryContext.Provider>
+    </DataContext.Provider>
   );
 };
 
-export const useLibraryContext = () => {
-  return useContext(LibraryContext);
+export const useDataContext = () => {
+  return useContext(DataContext);
 };

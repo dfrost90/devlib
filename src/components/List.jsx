@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import data from '../data.json';
 import Item from './Item';
-import { useLibraryContext } from '../context/library_context';
+import { useFilterContext } from '../context/filter_context';
 
 const List = () => {
-  const { storage: list } = useLibraryContext();
+  const { filteredData: list } = useFilterContext();
 
   return (
     <Wrapper>

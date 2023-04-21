@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FiExternalLink, FiTrash2 } from 'react-icons/fi';
 import { useGlobalContext } from '../context/global_context';
 import { useAuthContext } from '../context/auth_context';
+import { useFilterContext } from '../context/filter_context';
 
 const Item = ({
   libID: id,
@@ -12,6 +13,11 @@ const Item = ({
 }) => {
   const { openModal } = useGlobalContext();
   const { authUser } = useAuthContext();
+  const { updateFilters } = useFilterContext();
+
+  const handleTagClick = (e) => {
+    updateFilters(e, e.target.innerText, 'search');
+  };
 
   return (
     <Wrapper>
@@ -33,7 +39,16 @@ const Item = ({
       <p>{description}</p>
       <div>
         {categories.split(',').map((category, index) => {
-          return <span key={index}>{category}</span>;
+          return (
+            <button
+              className="btn tag-btn"
+              type="button"
+              key={index}
+              onClick={handleTagClick}
+            >
+              {category}
+            </button>
+          );
         })}
       </div>
     </Wrapper>
@@ -86,14 +101,21 @@ const Wrapper = styled.article`
     transition: color 0.3s;
   }
 
-  span {
+  .tag-btn {
     background-color: var(--clr-category-background);
     color: var(--clr-category-text);
     display: inline-block;
+    font-family: 'Switzer', sans-serif;
+    letter-spacing: normal;
     font-size: 12px;
     margin: 0 0.5rem 0.5rem 0;
     padding: 0.125rem 0.5rem;
+    text-transform: none;
     transition: all 0.3s;
+  }
+
+  .tag-btn:hover {
+    background-color: var(--clr-category-hover);
   }
 `;
 

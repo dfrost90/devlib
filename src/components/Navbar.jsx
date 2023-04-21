@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useGlobalContext } from '../context/global_context';
 import { Logo, Search, NavMenu } from './';
 
 import styled from 'styled-components';
 
 const Navbar = () => {
-  const [showSearch, setShowSearch] = useState(false);
+  const { searchMode } = useGlobalContext();
 
   return (
     <Wrapper>
       <div className="nav-center">
         <Logo />
-        <Search showSearch={showSearch} setShowSearch={setShowSearch} />
-        <NavMenu showSearch={showSearch} setShowSearch={setShowSearch} />
+        <section className={searchMode ? 'show-mobile' : 'hide-mobile'}>
+          <Search />
+        </section>
+        <NavMenu />
       </div>
     </Wrapper>
   );
@@ -22,6 +24,19 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: center;
   padding: 1rem 0 0;
+  position: relative;
+
+  .hide-mobile {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  .show-mobile {
+    @media (max-width: 992px) {
+      display: block;
+    }
+  }
 
   .nav-center {
     align-items: baseline;

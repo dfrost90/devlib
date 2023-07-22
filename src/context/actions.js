@@ -1,0 +1,9 @@
+export const TOGGLE_THEME = 'TOGGLE_THEME';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const LOAD_DATA = 'LOAD_DATA';
+export const FILTER_DATA = 'FILTER_DATA';
+export const UPDATE_FILTERS = 'UPDATE_FILTERS';
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
+export const OPEN_SEARCH = 'OPEN_SEARCH';
+export const CLOSE_SEARCH = 'CLOSE_SEARCH';
